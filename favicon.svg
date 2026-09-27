@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0c0e12"/>
+  <g fill="#3dff9a">
+    <!-- left plate hex -->
+    <path d="M8 22 L16 16 L24 22 L24 34 L16 40 L8 34 Z"/>
+    <!-- right plate hex -->
+    <path d="M40 22 L48 16 L56 22 L56 34 L48 40 L40 34 Z"/>
+    <!-- bar -->
+    <rect x="22" y="26" width="20" height="8" rx="2.5"/>
+  </g>
+</svg>
