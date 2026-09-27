@@ -412,6 +412,79 @@
     .day-est .g { text-align: left; }
     header h1 { font-size: 1.3rem; }
   }
+
+
+  /* Progress charts */
+  .card {
+    animation: cardFadeIn 0.55s ease both;
+  }
+  .card:nth-child(2) { animation-delay: 0.05s; }
+  .card:nth-child(3) { animation-delay: 0.1s; }
+  .card:nth-child(4) { animation-delay: 0.15s; }
+  @keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .chart-section { grid-column: 1 / -1; }
+  .chart-note {
+    color: var(--warn);
+    background: var(--warn-dim);
+    border: 1px solid rgba(255,184,77,0.28);
+    border-radius: 9px;
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+  }
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+  .chart-card {
+    min-width: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem;
+  }
+  .chart-card h3 {
+    font-size: 0.86rem;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .chart-card .chart-subtitle {
+    color: var(--muted);
+    font-size: 0.74rem;
+    margin-bottom: 0.55rem;
+  }
+  .chart-box {
+    position: relative;
+    height: 220px;
+  }
+  .lift-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.85rem;
+  }
+  .lift-chart-grid .chart-card { padding: 0.7rem; }
+  .lift-chart-grid .chart-box { height: 180px; }
+  .chart-legend-note {
+    color: var(--muted);
+    font-size: 0.72rem;
+    margin-top: 0.7rem;
+  }
+  @media (max-width: 760px) {
+    .lift-chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 520px) {
+    .chart-grid, .lift-chart-grid { grid-template-columns: 1fr; }
+    .chart-box { height: 205px; }
+    .lift-chart-grid .chart-box { height: 190px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -497,6 +570,49 @@
         </tbody>
       </table>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:0.7rem;">Mittaus ~2 vk välein aamulla, samoin ehdoin. Tavoite: suunta, ei päivittäinen heilahtelu.</p>
+    </section>
+
+
+
+    <!-- Progress charts preview -->
+    <section class="card chart-section">
+      <h2><span class="dot"></span> Kehityskäyrät (esikatselu)</h2>
+      <p class="chart-note">Katkoviivat = esikatselu / projekti nykyisestä lähtötasosta — korvautuvat oikeilla mittauksilla.</p>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Paino</h3>
+          <p class="chart-subtitle">kg · mittaus 27.9.2026, muu on projekti</p>
+          <div class="chart-box"><canvas id="weightChart" aria-label="Painon mitattu piste ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Vyötärö</h3>
+          <p class="chart-subtitle">cm · mittaus 27.9.2026, muu on projekti</p>
+          <div class="chart-box"><canvas id="waistChart" aria-label="Vyötärön mitattu piste ja projekti"></canvas></div>
+        </div>
+      </div>
+      <p class="chart-legend-note">Nostokaavioissa käytetään lokin toteutuneita huippuja; katkoviivat ovat 2–3 tulevan treenin suuntaa-antavia projekteja.</p>
+      <div class="lift-chart-grid">
+        <div class="chart-card">
+          <h3>Dipit</h3>
+          <p class="chart-subtitle">toistot · oma paino</p>
+          <div class="chart-box"><canvas id="dipsChart" aria-label="Dipit, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Ojentajapunnerrus taljassa</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="tricepsChart" aria-label="Ojentajapunnerrus taljassa, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Olkapääpunnerrus</h3>
+          <p class="chart-subtitle">toistot · 5+5 kg</p>
+          <div class="chart-box"><canvas id="shoulderChart" aria-label="Olkapääpunnerrus, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Vinopenkki (Smith)</h3>
+          <p class="chart-subtitle">toistot · 10 kg / puoli</p>
+          <div class="chart-box"><canvas id="smithChart" aria-label="Vinopenkki Smith, toteutuneet ja projekti"></canvas></div>
+        </div>
+      </div>
     </section>
 
     <!-- Recent workouts -->
@@ -686,5 +802,83 @@
   </footer>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  (() => {
+    const labels = ['21.9.', '26.9.', '10.10.', '24.10.', '7.11.'];
+    const colors = { measured: '#3dff9a', projected: '#ffb84d', grid: 'rgba(139,149,168,0.16)', text: '#8b95a8' };
+
+    const baseOptions = (unit, min, stepSize) => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 800, easing: 'easeOutQuart' },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: { color: colors.text, usePointStyle: true, boxWidth: 8, padding: 12, font: { size: 10 } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (context) => `${context.dataset.label}: ${context.parsed.y} ${unit}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: colors.grid },
+          ticks: { color: colors.text, maxRotation: 0, font: { size: 10 } }
+        },
+        y: {
+          min,
+          ticks: { color: colors.text, stepSize, font: { size: 10 }, callback: (value) => `${value} ${unit}` },
+          grid: { color: colors.grid }
+        }
+      }
+    });
+
+    const measuredDataset = (data, showLine = false) => ({
+      label: 'Mitattu', data, borderColor: colors.measured, backgroundColor: colors.measured,
+      borderWidth: 2, pointRadius: 5, pointHoverRadius: 7, showLine
+    });
+    const projectedDataset = (data) => ({
+      label: 'Projekti', data, borderColor: colors.projected, backgroundColor: colors.projected,
+      borderWidth: 2, borderDash: [6, 5], pointRadius: 3, pointHoverRadius: 5, tension: 0.25,
+      spanGaps: true
+    });
+
+    new Chart(document.getElementById('weightChart'), {
+      type: 'line',
+      data: { labels: ['27.9.', '11.10.', '25.10.', '8.11.', '22.11.'], datasets: [
+        measuredDataset([79.8, null, null, null, null]),
+        projectedDataset([79.8, 79.9, 79.7, 79.8, 79.6])
+      ] },
+      options: baseOptions('kg', 79.0, 0.2)
+    });
+
+    new Chart(document.getElementById('waistChart'), {
+      type: 'line',
+      data: { labels: ['27.9.', '11.10.', '25.10.', '8.11.', '22.11.'], datasets: [
+        measuredDataset([95, null, null, null, null]),
+        projectedDataset([95, 94.7, 94.4, 94.1, 93.8])
+      ] },
+      options: baseOptions('cm', 93, 0.5)
+    });
+
+    const liftChart = (id, data, min, stepSize, unit) => new Chart(document.getElementById(id), {
+      type: 'line',
+      data: { labels, datasets: [
+        measuredDataset([data[0], data[1], null, null, null], true),
+        projectedDataset([null, data[1], data[2], data[3], data[4]])
+      ] },
+      options: baseOptions(unit, min, stepSize)
+    });
+
+    liftChart('dipsChart', [8, 10, 10, 11, 11], 7, 1, 'toist.');
+    liftChart('tricepsChart', [30, 40, 40, 42, 42], 28, 5, 'kg');
+    liftChart('shoulderChart', [8, 10, 10, 10, 11], 7, 1, 'toist.');
+    liftChart('smithChart', [7, 8, 8, 8, 9], 6, 1, 'toist.');
+  })();
+</script>
 </body>
 </html>
