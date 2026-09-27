@@ -30,6 +30,36 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .sync-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .sync-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+  .sync-btn:disabled { opacity: 0.65; cursor: wait; }
+  .sync-btn .ico { display: inline-block; line-height: 1; }
+  .sync-btn.busy .ico { animation: spin 0.75s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+
   body {
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
     background: var(--bg);
@@ -494,7 +524,13 @@
 <div class="wrap">
 
   <header>
-    <h1>Samu — <span>Treeni &amp; Ravinto</span></h1>
+    <div class="header-top">
+      <h1>Samu — <span>Treeni &amp; Ravinto</span></h1>
+      <button type="button" class="sync-btn" id="syncBtn" title="Hae uusin data (päivitä sivu)">
+        <span class="ico" aria-hidden="true">↻</span>
+        <span class="label">Sync</span>
+      </button>
+    </div>
     <p style="color:var(--text-dim);font-size:0.9rem;">Recomp · ~52 v · Kreatiini 5 g/pv (RECO riittää)</p>
     <div class="meta-row">
       <span class="badge">Viikko 1 / sykli</span>
@@ -883,5 +919,30 @@
     liftChart('smithChart', [7, 8, 8, 8, 9], 6, 1, 'toist.');
   })();
 </script>
+
+<script>
+  (() => {
+    const btn = document.getElementById('syncBtn');
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.classList.add('busy');
+      const label = btn.querySelector('.label');
+      if (label) label.textContent = 'Päivitetään…';
+      try {
+        // Cache-bust fetch so Safari/Pages don't serve a stale shell
+        const url = new URL(location.href);
+        url.searchParams.set('_', String(Date.now()));
+        const res = await fetch(url.pathname + url.search, { cache: 'no-store', headers: { 'Cache-Control': 'no-cache' } });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        // Hard navigate to busted URL so the document actually updates
+        location.replace(url.pathname + url.search + url.hash);
+      } catch (e) {
+        location.reload();
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
