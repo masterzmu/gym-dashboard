@@ -30,6 +30,15 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  .metric-big {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .metric-sub { color: var(--muted); font-size: 0.8rem; margin-top: 0.25rem; }
+
+
   .header-top {
     display: flex;
     align-items: flex-start;
@@ -760,6 +769,22 @@
       </div>
     </section>
 
+
+    <!-- Pull-up test -->
+    <section class="card">
+      <h2><span class="dot"></span> Leuanvetotesti</h2>
+      <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem;">Pull-päivän alussa: 1 × max. Sitten ylätalja pääliikkeenä.</p>
+      <div class="metric-big">~4</div>
+      <div class="metric-sub">viimeisin arvio · ma 28.9. kirjataan treenin jälkeen</div>
+      <div class="day-est" style="margin-top:1rem;">
+        <div class="row">
+          <span class="d">lähtö</span>
+          <span class="desc">Ennen viikkoa 2 Pullia</span>
+          <span class="g">~4 toistoa</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Protein -->
     <section class="card">
       <h2><span class="dot"></span> Proteiini</h2>
@@ -792,6 +817,11 @@
           <span class="d">su 27.9. lepo</span>
           <span class="desc">Aamiainen + ravioli + tiramisu + keitto + leipä + suklaaproteiinijuoma</span>
           <span class="g">~85–115 g</span>
+        </div>
+        <div class="row">
+          <span class="d">ma 28.9. Pull</span>
+          <span class="desc">Mansikka-RECO (proteiini + kreatiini)</span>
+          <span class="g">~31 g toistaiseksi</span>
         </div>
       </div>
     </section>
@@ -837,7 +867,7 @@
   </div>
 
   <footer>
-    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 27.9.2026
+    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 28.9.2026
   </footer>
 
 </div>
