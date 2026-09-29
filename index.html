@@ -717,6 +717,19 @@
       </div>
     </section>
 
+    <!-- Abs progress -->
+    <section class="card span-2">
+      <h2><span class="dot"></span> Vatsat — kehitys</h2>
+      <p class="chart-legend-note">Crunch-laite on perusvatsat kaikilla PPL-päivillä. Katkoviivat = projekti.</p>
+      <div class="lift-chart-grid">
+        <div class="chart-card">
+          <h3>Crunch-laite</h3>
+          <p class="chart-subtitle">kg · sarjan huippu (3 × 15)</p>
+          <div class="chart-box"><canvas id="absChart" aria-label="Crunch-laite, toteutuneet ja projekti"></canvas></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Recent workouts -->
     <section class="card span-2">
       <h2><span class="dot"></span> Viimeisimmät treenit</h2>
@@ -1056,6 +1069,10 @@
     liftChart('rdlChart', legsLabels, [60, 65, 70, 70, 75], 1, 50, 5, 'kg');
     liftChart('calfChart', legsLabels, [70, 75, 80, 80, 85], 1, 60, 5, 'kg');
     liftChart('hamstringChart', legsLabels, [40.5, 42, 45, 45, 47.5], 1, 35, 2.5, 'kg');
+
+    // Abs / crunch-laite across sessions
+    const absLabels = ['26.9. Push', '29.9. Pull', '13.10.', '27.10.', '10.11.'];
+    liftChart('absChart', absLabels, [40, 45, 45, 47.5, 50], 2, 35, 2.5, 'kg');
   })();
 </script>
 
