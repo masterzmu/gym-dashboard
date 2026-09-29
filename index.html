@@ -639,6 +639,8 @@
         </div>
       </div>
       <p class="chart-legend-note">Nostokaavioissa käytetään lokin toteutuneita huippuja; katkoviivat ovat 2–3 tulevan treenin suuntaa-antavia projekteja.</p>
+
+      <p class="est-label" style="margin-top:1rem;">Push</p>
       <div class="lift-chart-grid">
         <div class="chart-card">
           <h3>Dipit</h3>
@@ -659,6 +661,54 @@
           <h3>Vinopenkki (Smith)</h3>
           <p class="chart-subtitle">toistot · 10 kg / puoli</p>
           <div class="chart-box"><canvas id="smithChart" aria-label="Vinopenkki Smith, toteutuneet ja projekti"></canvas></div>
+        </div>
+      </div>
+
+      <p class="est-label" style="margin-top:1.25rem;">Pull</p>
+      <div class="lift-chart-grid">
+        <div class="chart-card">
+          <h3>Leuanvetotesti</h3>
+          <p class="chart-subtitle">toistot · 1 × max</p>
+          <div class="chart-box"><canvas id="pullupChart" aria-label="Leuanvetotesti, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Ylätalja</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="latChart" aria-label="Ylätalja, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Chest-supported row</h3>
+          <p class="chart-subtitle">kg · 3 × 10</p>
+          <div class="chart-box"><canvas id="rowChart" aria-label="Chest-supported row, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Hammer curl</h3>
+          <p class="chart-subtitle">toistot · 8 kg</p>
+          <div class="chart-box"><canvas id="hammerChart" aria-label="Hammer curl, toteutuneet ja projekti"></canvas></div>
+        </div>
+      </div>
+
+      <p class="est-label" style="margin-top:1.25rem;">Legs</p>
+      <div class="lift-chart-grid">
+        <div class="chart-card">
+          <h3>Jalkaprässi</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="pressChart" aria-label="Jalkaprässi, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Romanian deadlift</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="rdlChart" aria-label="Romanian deadlift, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Pohjenousut</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="calfChart" aria-label="Pohjenousut, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Reiden koukistus</h3>
+          <p class="chart-subtitle">kg · istuen</p>
+          <div class="chart-box"><canvas id="hamstringChart" aria-label="Reiden koukistus, toteutuneet ja projekti"></canvas></div>
         </div>
       </div>
     </section>
@@ -904,7 +954,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   (() => {
-    const labels = ['21.9.', '26.9.', '10.10.', '24.10.', '7.11.'];
+    const pushLabels = ['21.9.', '26.9.', '10.10.', '24.10.', '7.11.'];
+    const pullLabels = ['22.9.', '29.9.', '13.10.', '27.10.', '10.11.'];
+    const legsLabels = ['24.9.', '8.10.', '22.10.', '5.11.', '19.11.'];
     const colors = { measured: '#3dff9a', projected: '#ffb84d', grid: 'rgba(139,149,168,0.16)', text: '#8b95a8' };
 
     const baseOptions = (unit, min, stepSize) => ({
@@ -963,19 +1015,43 @@
       options: baseOptions('cm', 93, 0.5)
     });
 
-    const liftChart = (id, data, min, stepSize, unit) => new Chart(document.getElementById(id), {
-      type: 'line',
-      data: { labels, datasets: [
-        measuredDataset([data[0], data[1], null, null, null], true),
-        projectedDataset([null, data[1], data[2], data[3], data[4]])
-      ] },
-      options: baseOptions(unit, min, stepSize)
-    });
+    const liftChart = (id, labels, data, measuredCount, min, stepSize, unit) => {
+      const measured = data.map((v, i) => (i < measuredCount ? v : null));
+      const projected = data.map((v, i) => (i >= measuredCount - 1 ? v : null));
+      return new Chart(document.getElementById(id), {
+        type: 'line',
+        data: { labels, datasets: [
+          measuredDataset(measured, true),
+          projectedDataset(projected)
+        ] },
+        options: baseOptions(unit, min, stepSize)
+      });
+    };
 
-    liftChart('dipsChart', [8, 10, 10, 11, 11], 7, 1, 'toist.');
-    liftChart('tricepsChart', [30, 40, 40, 42, 42], 28, 5, 'kg');
-    liftChart('shoulderChart', [8, 10, 10, 10, 11], 7, 1, 'toist.');
-    liftChart('smithChart', [7, 8, 8, 8, 9], 6, 1, 'toist.');
+    // Push: 2 measured sessions
+    liftChart('dipsChart', pushLabels, [8, 10, 10, 11, 11], 2, 7, 1, 'toist.');
+    liftChart('tricepsChart', pushLabels, [30, 40, 40, 42, 42], 2, 28, 5, 'kg');
+    liftChart('shoulderChart', pushLabels, [8, 10, 10, 10, 11], 2, 7, 1, 'toist.');
+    liftChart('smithChart', pushLabels, [7, 8, 8, 8, 9], 2, 6, 1, 'toist.');
+
+    // Pull
+    new Chart(document.getElementById('pullupChart'), {
+      type: 'line',
+      data: { labels: pullLabels, datasets: [
+        measuredDataset([null, 4, null, null, null], true),
+        projectedDataset([null, 4, 5, 5, 6])
+      ] },
+      options: baseOptions('toist.', 3, 1)
+    });
+    liftChart('latChart', pullLabels, [60, 60, 62.5, 65, 65], 2, 55, 2.5, 'kg');
+    liftChart('rowChart', pullLabels, [56, 56, 58, 60, 60], 2, 50, 2, 'kg');
+    liftChart('hammerChart', pullLabels, [6, 10, 10, 11, 12], 2, 5, 1, 'toist.');
+
+    // Legs: 1 measured session (24.9.)
+    liftChart('pressChart', legsLabels, [80, 85, 90, 90, 95], 1, 70, 5, 'kg');
+    liftChart('rdlChart', legsLabels, [60, 65, 70, 70, 75], 1, 50, 5, 'kg');
+    liftChart('calfChart', legsLabels, [70, 75, 80, 80, 85], 1, 60, 5, 'kg');
+    liftChart('hamstringChart', legsLabels, [40.5, 42, 45, 45, 47.5], 1, 35, 2.5, 'kg');
   })();
 </script>
 
