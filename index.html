@@ -598,7 +598,7 @@
     </section>
 
     <!-- Weight -->
-    <section class="card">
+    <section class="card span-2">
       <h2><span class="dot"></span> Paino</h2>
       <div class="weight-hero">
         <div><span class="kg">79,8</span> <span class="unit">kg</span></div>
@@ -618,29 +618,25 @@
         </tbody>
       </table>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:0.7rem;">Mittaus ~2 vk välein aamulla, samoin ehdoin. Tavoite: suunta, ei päivittäinen heilahtelu.</p>
-    </section>
-
-
-
-    <!-- Progress charts preview -->
-    <section class="card chart-section">
-      <h2><span class="dot"></span> Kehityskäyrät (esikatselu)</h2>
-      <p class="chart-note">Katkoviivat = esikatselu / projekti nykyisestä lähtötasosta — korvautuvat oikeilla mittauksilla.</p>
+      <p class="chart-note" style="margin-top:1rem;">Katkoviivat = esikatselu / projekti — korvautuvat uusilla mittauksilla.</p>
       <div class="chart-grid">
         <div class="chart-card">
-          <h3>Paino</h3>
+          <h3>Painokäyrä</h3>
           <p class="chart-subtitle">kg · mittaus 27.9.2026, muu on projekti</p>
           <div class="chart-box"><canvas id="weightChart" aria-label="Painon mitattu piste ja projekti"></canvas></div>
         </div>
         <div class="chart-card">
-          <h3>Vyötärö</h3>
+          <h3>Vyötärökäyrä</h3>
           <p class="chart-subtitle">cm · mittaus 27.9.2026, muu on projekti</p>
           <div class="chart-box"><canvas id="waistChart" aria-label="Vyötärön mitattu piste ja projekti"></canvas></div>
         </div>
       </div>
-      <p class="chart-legend-note">Nostokaavioissa käytetään lokin toteutuneita huippuja; katkoviivat ovat 2–3 tulevan treenin suuntaa-antavia projekteja.</p>
+    </section>
 
-      <p class="est-label" style="margin-top:1rem;">Push</p>
+    <!-- Push progress -->
+    <section class="card span-2">
+      <h2><span class="dot"></span> Push — kehitys</h2>
+      <p class="chart-legend-note">Lokin huiput; katkoviivat = seuraavien treenien suuntaa-antava projekti.</p>
       <div class="lift-chart-grid">
         <div class="chart-card">
           <h3>Dipit</h3>
@@ -663,8 +659,12 @@
           <div class="chart-box"><canvas id="smithChart" aria-label="Vinopenkki Smith, toteutuneet ja projekti"></canvas></div>
         </div>
       </div>
+    </section>
 
-      <p class="est-label" style="margin-top:1.25rem;">Pull</p>
+    <!-- Pull progress -->
+    <section class="card span-2">
+      <h2><span class="dot"></span> Pull — kehitys</h2>
+      <p class="chart-legend-note">Lokin huiput; katkoviivat = seuraavien treenien suuntaa-antava projekti.</p>
       <div class="lift-chart-grid">
         <div class="chart-card">
           <h3>Leuanvetotesti</h3>
@@ -687,8 +687,12 @@
           <div class="chart-box"><canvas id="hammerChart" aria-label="Hammer curl, toteutuneet ja projekti"></canvas></div>
         </div>
       </div>
+    </section>
 
-      <p class="est-label" style="margin-top:1.25rem;">Legs</p>
+    <!-- Legs progress -->
+    <section class="card span-2">
+      <h2><span class="dot"></span> Legs — kehitys</h2>
+      <p class="chart-legend-note">Lokin huiput; katkoviivat = seuraavien treenien suuntaa-antava projekti.</p>
       <div class="lift-chart-grid">
         <div class="chart-card">
           <h3>Jalkaprässi</h3>
