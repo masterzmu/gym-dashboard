@@ -542,9 +542,9 @@
     </div>
     <p style="color:var(--text-dim);font-size:0.9rem;">Recomp · ~52 v · Kreatiini 5 g/pv (RECO riittää)</p>
     <div class="meta-row">
-      <span class="badge">Viikko 2 / sykli</span>
-      <span class="badge next">Seuraava: Pull</span>
-      <span>Aloitus 21.9.2026 · Pull ti 29.9. · Legs to 1.10. · Push la 3.10. · seuraava Pull</span>
+      <span class="badge">Viikko 2 ✓ valmis</span>
+      <span class="badge next">Seuraava: Legs (viikko 3)</span>
+      <span>Aloitus 21.9.2026 · Pull ti 29.9. · Legs to 1.10. · Push la 3.10. · Pull ma 5.10. · seuraava Legs</span>
     </div>
   </header>
 
@@ -586,13 +586,13 @@
         </div>
         <div class="session">
           <div class="left">
-            <div class="check" style="opacity:.35">○</div>
+            <div class="check">✓</div>
             <div>
               <div class="session-name">Pull</div>
-              <div class="session-date">la (tavoite)</div>
+              <div class="session-date">ma 5.10.2026</div>
             </div>
           </div>
-          <span class="session-tag">Odottaa</span>
+          <span class="session-tag">Valmis</span>
         </div>
       </div>
     </section>
@@ -684,13 +684,23 @@
         </div>
         <div class="chart-card">
           <h3>Chest-supported row</h3>
-          <p class="chart-subtitle">kg · 3 × 10</p>
+          <p class="chart-subtitle">kg · sarjan huippu · 5.10. eri laite (vapaat painot)</p>
           <div class="chart-box"><canvas id="rowChart" aria-label="Chest-supported row, toteutuneet ja projekti"></canvas></div>
         </div>
         <div class="chart-card">
           <h3>Hammer curl</h3>
-          <p class="chart-subtitle">toistot · 8 kg</p>
+          <p class="chart-subtitle">toistot (paras sarja) · 8 kg</p>
           <div class="chart-box"><canvas id="hammerChart" aria-label="Hammer curl, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Yhden käden KP-soutu</h3>
+          <p class="chart-subtitle">toistot / sarja · 20 kg</p>
+          <div class="chart-box"><canvas id="dbRowChart" aria-label="Yhden käden käsipainosoutu, toteutuneet ja projekti"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Reverse pec deck</h3>
+          <p class="chart-subtitle">kg · sarjan huippu</p>
+          <div class="chart-box"><canvas id="rpdChart" aria-label="Reverse pec deck, toteutuneet ja projekti"></canvas></div>
         </div>
       </div>
     </section>
@@ -741,6 +751,27 @@
       <h2><span class="dot"></span> Viimeisimmät treenit</h2>
 
       <details class="workout" open>
+        <summary>
+          <div class="wo-title">
+            <span>Pull <span class="wo-type pull">Pull</span></span>
+            <span class="wo-date">ma 5.10.2026 · viikko 2 (viikko valmis)</span>
+          </div>
+        </summary>
+        <div class="lifts">
+          <div class="lift"><span class="lift-name">Leuanvetotesti</span><span class="lift-sets">1 × 3 (max)</span></div>
+          <div class="lift"><span class="lift-name">Punnerrustesti</span><span class="lift-sets">1 × 35 (failure)</span></div>
+          <div class="lift"><span class="lift-name">Ylätalja</span><span class="lift-sets">10×50, 10×55, 8×60 kg</span></div>
+          <div class="lift"><span class="lift-name">Chest-supported row (eri laite, vapaat painot)</span><span class="lift-sets">15×40, 12×50, 12×55 kg</span></div>
+          <div class="lift"><span class="lift-name">Yhden käden käsipainosoutu</span><span class="lift-sets">3 × 12 @ 20 kg</span></div>
+          <div class="lift"><span class="lift-name">Face pull</span><span class="lift-sets">3 × 15 @ 35 kg</span></div>
+          <div class="lift"><span class="lift-name">Reverse pec deck</span><span class="lift-sets">15×24, 12×30, 12×30 kg</span></div>
+          <div class="lift"><span class="lift-name">Hauiskääntö käsipainoilla</span><span class="lift-sets">10×10, 10×10, 8×10 kg</span></div>
+          <div class="lift"><span class="lift-name">Hammer curl</span><span class="lift-sets">15×8, 12×8, 10×8 kg</span></div>
+          <div class="lift"><span class="lift-name">Crunch-laite</span><span class="lift-sets">3 × 15 @ 50 kg</span></div>
+        </div>
+      </details>
+
+      <details class="workout">
         <summary>
           <div class="wo-title">
             <span>Push <span class="wo-type push">Push</span></span>
@@ -904,7 +935,7 @@
       <h2><span class="dot"></span> Leuanvetotesti</h2>
       <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem;">Joka salitreenin alussa: 1 × max (ei vain Pull). Testataan jokaisessa treenissä.</p>
       <div class="metric-big">3</div>
-      <div class="metric-sub">to 1.10. Legs · 1 × max</div>
+      <div class="metric-sub">ma 5.10. Pull · 1 × max · sama kuin 1.10.</div>
       <div class="day-est" style="margin-top:1rem;">
         <div class="row">
           <span class="d">ti 29.9. Pull</span>
@@ -916,6 +947,11 @@
           <span class="desc">Legs (kiinniotto)</span>
           <span class="g">3 toistoa</span>
         </div>
+        <div class="row">
+          <span class="d">ma 5.10. Pull</span>
+          <span class="desc">Pull (viikko 2 viimeinen)</span>
+          <span class="g">3 toistoa</span>
+        </div>
       </div>
       <p class="chart-legend-note">Joka treeni · katkoviiva = suuntaa-antava projekti.</p>
       <div class="chart-box" style="margin-top:0.6rem;height:200px;"><canvas id="leuanvetoMetricChart" aria-label="Leuanvetotesti kehitys"></canvas></div>
@@ -924,14 +960,19 @@
     <!-- Push-up test -->
     <section class="card">
       <h2><span class="dot"></span> Punnerrustesti</h2>
-      <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem;">Joka salitreenin alussa: 1 × failure (oma paino). Ensimmäinen kirjattu mittaus.</p>
-      <div class="metric-big">33</div>
-      <div class="metric-sub">to 1.10. Legs · 1 × failure · baseline</div>
+      <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem;">Joka salitreenin alussa: 1 × failure (oma paino). Kaksi kirjattua mittausta.</p>
+      <div class="metric-big">35</div>
+      <div class="metric-sub">ma 5.10. Pull · 1 × failure · +2 vs 1.10.</div>
       <div class="day-est" style="margin-top:1rem;">
         <div class="row">
           <span class="d">to 1.10. Legs</span>
           <span class="desc">Ensimmäinen baseline</span>
           <span class="g">33 toistoa</span>
+        </div>
+        <div class="row">
+          <span class="d">ma 5.10. Pull</span>
+          <span class="desc">+2 vs baseline</span>
+          <span class="g">35 toistoa</span>
         </div>
       </div>
       <p class="chart-legend-note">Joka treeni · katkoviiva = suuntaa-antava projekti.</p>
@@ -1006,6 +1047,11 @@
           <span class="desc">Aamiainen ruisleipä/kinkku/muna ×2 (~25–35 g) + kreatiini 5 g + paneroitu broileri/riisi/porkkana (~30–45 g) + Arla Protein Coffee 17 g; illallinen ei kirjattu</span>
           <span class="g">~70–95 g</span>
         </div>
+        <div class="row">
+          <span class="d">ma 5.10. Pull</span>
+          <span class="desc">RECO-aamiainen ~31 g + lounas paneroitu kana 200 g + lohkoperunat + salaatti (~40–55 g); illallinen ei vielä kirjattu</span>
+          <span class="g">~70–85 g (kesken)</span>
+        </div>
       </div>
     </section>
 
@@ -1017,7 +1063,7 @@
           <tr><th></th><th>Ma</th><th>Ti</th><th>To</th><th>La</th></tr>
         </thead>
         <tbody>
-          <tr class="current">
+          <tr>
             <td class="wk">Viikko 1 ✓</td>
             <td><span class="chip push">Push</span></td>
             <td><span class="chip pull">Pull</span></td>
@@ -1025,14 +1071,14 @@
             <td><span class="chip push">Push</span></td>
           </tr>
           <tr>
-            <td class="wk">Viikko 2</td>
+            <td class="wk">Viikko 2 ✓</td>
             <td><span class="chip pull">Pull</span></td>
             <td><span class="chip legs">Legs</span></td>
             <td><span class="chip push">Push</span></td>
             <td><span class="chip pull">Pull</span></td>
           </tr>
-          <tr>
-            <td class="wk">Viikko 3</td>
+          <tr class="current">
+            <td class="wk">Viikko 3 ← seuraava</td>
             <td><span class="chip legs">Legs</span></td>
             <td><span class="chip push">Push</span></td>
             <td><span class="chip pull">Pull</span></td>
@@ -1050,7 +1096,7 @@
   </div>
 
   <footer>
-    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 5.10.2026
+    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 5.10.2026 (Pull kirjattu)
   </footer>
 
 </div>
@@ -1059,7 +1105,7 @@
 <script>
   (() => {
     const pushLabels = ['21.9.', '26.9.', '3.10.', '17.10.', '31.10.'];
-    const pullLabels = ['22.9.', '29.9.', '13.10.', '27.10.', '10.11.'];
+    const pullLabels = ['22.9.', '29.9.', '5.10.', 'seur.', '+2'];
     const legsLabels = ['24.9.', '1.10.', '15.10.', '29.10.', '12.11.'];
     const colors = { measured: '#3dff9a', projected: '#ffb84d', grid: 'rgba(139,149,168,0.16)', text: '#8b95a8' };
 
@@ -1142,14 +1188,17 @@
     new Chart(document.getElementById('pullupChart'), {
       type: 'line',
       data: { labels: pullLabels, datasets: [
-        measuredDataset([null, 4, null, null, null], true),
-        projectedDataset([null, 4, 5, 5, 6])
+        measuredDataset([null, 4, 3, null, null], true),
+        projectedDataset([null, null, 3, 4, 4])
       ] },
-      options: baseOptions('toist.', 3, 1)
+      options: baseOptions('toist.', 2, 1)
     });
-    liftChart('latChart', pullLabels, [60, 60, 62.5, 65, 65], 2, 55, 2.5, 'kg');
-    liftChart('rowChart', pullLabels, [56, 56, 58, 60, 60], 2, 50, 2, 'kg');
-    liftChart('hammerChart', pullLabels, [6, 10, 10, 11, 12], 2, 5, 1, 'toist.');
+    // Pull: 3 measured sessions (22.9., 29.9., 5.10.)
+    liftChart('latChart', pullLabels, [60, 60, 60, 62.5, 62.5], 3, 55, 2.5, 'kg');
+    liftChart('rowChart', pullLabels, [56, 56, 55, 57.5, 60], 3, 50, 2.5, 'kg');
+    liftChart('hammerChart', pullLabels, [6, 10, 15, 15, 15], 3, 5, 2, 'toist.');
+    liftChart('dbRowChart', pullLabels, [10, 10, 12, 12, 12], 3, 8, 1, 'toist.');
+    liftChart('rpdChart', pullLabels, [null, 24, 30, 30, 32], 3, 20, 2, 'kg');
 
     // Legs: 2 measured sessions (24.9., 1.10.)
     liftChart('pressChart', legsLabels, [80, 80, 85, 85, 90], 2, 70, 5, 'kg');
@@ -1158,14 +1207,14 @@
     liftChart('hamstringChart', legsLabels, [40.5, 43, 45, 45, 47.5], 2, 35, 2.5, 'kg');
 
     // Abs / crunch-laite across sessions
-    const absLabels = ['26.9. Push', '29.9. Pull', '1.10. Legs', '3.10. Push', '17.10.'];
-    liftChart('absChart', absLabels, [40, 45, 50, 50, 52.5], 4, 35, 2.5, 'kg');
+    const absLabels = ['26.9. Push', '29.9. Pull', '1.10. Legs', '3.10. Push', '5.10. Pull', 'seur. Legs'];
+    liftChart('absChart', absLabels, [40, 45, 50, 50, 50, 52.5], 5, 35, 2.5, 'kg');
 
-    // Metric cards: leuanveto every session; punnerrus baseline so far
-    const leuanvetoMetricLabels = ['29.9. Pull', '1.10. Legs', '3.10.', '6.10.', '8.10.'];
-    liftChart('leuanvetoMetricChart', leuanvetoMetricLabels, [4, 3, 4, 4, 5], 2, 2, 1, 'toist.');
-    const punnerrusMetricLabels = ['1.10. Legs', '3.10.', '6.10.', '8.10.', '10.10.'];
-    liftChart('punnerrusMetricChart', punnerrusMetricLabels, [33, 34, 35, 36, 37], 1, 28, 2, 'toist.');
+    // Metric cards: tests logged 29.9., 1.10., 5.10. (skipped 3.10.)
+    const leuanvetoMetricLabels = ['29.9. Pull', '1.10. Legs', '5.10. Pull', 'seur.', '+2'];
+    liftChart('leuanvetoMetricChart', leuanvetoMetricLabels, [4, 3, 3, 4, 4], 3, 2, 1, 'toist.');
+    const punnerrusMetricLabels = ['1.10. Legs', '5.10. Pull', 'seur.', '+2', '+3'];
+    liftChart('punnerrusMetricChart', punnerrusMetricLabels, [33, 35, 36, 37, 38], 2, 28, 2, 'toist.');
   })();
 </script>
 
