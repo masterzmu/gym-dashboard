@@ -601,14 +601,20 @@
     <section class="card span-2">
       <h2><span class="dot"></span> Paino</h2>
       <div class="weight-hero">
-        <div><span class="kg">79,8</span> <span class="unit">kg</span></div>
-        <div class="sub">su 27.9.2026 · ensimmäinen mittaus · vyötärö 95 cm</div>
+        <div><span class="kg">80,4</span> <span class="unit">kg</span></div>
+        <div class="sub">ma 5.10.2026 · +0,6 kg vs 27.9. · vyötärö ei mitattu</div>
       </div>
       <table class="meas">
         <thead>
           <tr><th>Pvm</th><th>Paino</th><th>Vyötärö</th><th>Huomio</th></tr>
         </thead>
         <tbody>
+          <tr>
+            <td>ma 5.10.2026</td>
+            <td>80,4 kg</td>
+            <td>–</td>
+            <td>Vyötärö ei mitattu</td>
+          </tr>
           <tr>
             <td>su 27.9.2026</td>
             <td>79,8 kg</td>
@@ -622,7 +628,7 @@
       <div class="chart-grid">
         <div class="chart-card">
           <h3>Painokäyrä</h3>
-          <p class="chart-subtitle">kg · mittaus 27.9.2026, muu on projekti</p>
+          <p class="chart-subtitle">kg · mittaukset 27.9. ja 5.10.2026, muu on projekti</p>
           <div class="chart-box"><canvas id="weightChart" aria-label="Painon mitattu piste ja projekti"></canvas></div>
         </div>
         <div class="chart-card">
@@ -992,8 +998,13 @@
         </div>
         <div class="row">
           <span class="d">la 3.10. Push</span>
-          <span class="desc">Kauramaito-kahvi + lounas (ruisleipä/kinkku/muna ×2 + whey) + kreatiini 5 g + Arla Protein Raspberry 17 g + illallinen kanahalloumipizza</span>
+          <span class="desc">Kauramaito-kahvi + ruisleipä/kinkku/muna ×2 lounasaikaan + whey + kreatiini 5 g + kanahalloumipizza + Arla Protein Raspberry 17 g (ei erillistä lounasta)</span>
           <span class="g">~90–120 g</span>
+        </div>
+        <div class="row">
+          <span class="d">su 4.10. lepo</span>
+          <span class="desc">Aamiainen ruisleipä/kinkku/muna ×2 (~25–35 g) + kreatiini 5 g + paneroitu broileri/riisi/porkkana (~30–45 g) + Arla Protein Coffee 17 g; illallinen ei kirjattu</span>
+          <span class="g">~70–95 g</span>
         </div>
       </div>
     </section>
@@ -1039,7 +1050,7 @@
   </div>
 
   <footer>
-    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 3.10.2026
+    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 5.10.2026
   </footer>
 
 </div>
@@ -1092,11 +1103,11 @@
 
     new Chart(document.getElementById('weightChart'), {
       type: 'line',
-      data: { labels: ['27.9.', '11.10.', '25.10.', '8.11.', '22.11.'], datasets: [
-        measuredDataset([79.8, null, null, null, null]),
-        projectedDataset([79.8, 79.9, 79.7, 79.8, 79.6])
+      data: { labels: ['27.9.', '5.10.', '19.10.', '2.11.', '16.11.', '30.11.'], datasets: [
+        measuredDataset([79.8, 80.4, null, null, null, null]),
+        projectedDataset([null, 80.4, 80.3, 80.2, 80.1, 80.0])
       ] },
-      options: baseOptions('kg', 79.0, 0.2)
+      options: baseOptions('kg', 79.4, 0.2)
     });
 
     new Chart(document.getElementById('waistChart'), {
