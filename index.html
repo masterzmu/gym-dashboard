@@ -527,6 +527,16 @@
   @media (prefers-reduced-motion: reduce) {
     .card { animation: none; }
   }
+
+  /* Mobile overflow guard */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  .grid > *, .card, .chart-grid > *, .lift-chart-grid > *, .chart-box, .lift, .lift > * { min-width: 0; }
+  .lift-sets { white-space: normal; overflow-wrap: anywhere; }
+  .card, .card p, .card td, .card th, .sub, .chart-subtitle, .chart-note { overflow-wrap: anywhere; }
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .chart-box { position: relative; width: 100%; max-width: 100%; }
+  svg, canvas, img { max-width: 100% !important; }
 </style>
 </head>
 <body>
@@ -606,7 +616,7 @@
         <div><span class="kg">80,4</span> <span class="unit">kg</span></div>
         <div class="sub">ma 5.10.2026 · +0,6 kg vs 27.9. · vyötärö ei mitattu</div>
       </div>
-      <table class="meas">
+      <div class="table-scroll"><table class="meas">
         <thead>
           <tr><th>Pvm</th><th>Paino</th><th>Vyötärö</th><th>Huomio</th></tr>
         </thead>
@@ -624,7 +634,7 @@
             <td>Ensimmäinen kirjattu mittaus</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <p style="font-size:0.78rem;color:var(--muted);margin-top:0.7rem;">Mittaus ~2 vk välein aamulla, samoin ehdoin. Tavoite: suunta, ei päivittäinen heilahtelu.</p>
       <p class="chart-note" style="margin-top:1rem;">Katkoviivat = esikatselu / projekti — korvautuvat uusilla mittauksilla.</p>
       <div class="chart-grid">
@@ -1160,7 +1170,7 @@
     <!-- Program overview -->
     <section class="card span-2">
       <h2><span class="dot"></span> Ohjelma — 4× PPL (rullaava)</h2>
-      <table class="ppl-table">
+      <div class="table-scroll"><table class="ppl-table">
         <thead>
           <tr><th></th><th>Ma</th><th>Ti</th><th>To</th><th>La</th></tr>
         </thead>
@@ -1187,7 +1197,7 @@
             <td><span class="chip legs">Legs</span></td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <ul class="rules">
         <li>Sitten kierto jatkuu. Lauantai = tavoite (ei pakko); jos jää väliin → pe-paikkaus tai 3× (ma/ti/to).</li>
         <li>RIR 2 · Progressio 3×6–10: toistot ylös → sitten paino · Ei failureen · ~60–75 min</li>
