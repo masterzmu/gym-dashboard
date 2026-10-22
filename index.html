@@ -624,14 +624,20 @@
     <section class="card span-2">
       <h2><span class="dot"></span> Paino</h2>
       <div class="weight-hero">
-        <div><span class="kg">79,8</span> <span class="unit">kg</span></div>
-        <div class="sub">ti 13.10.2026 · -0,6 kg vs 5.10. · vyötärö ei mitattu</div>
+        <div><span class="kg">81,4</span> <span class="unit">kg</span></div>
+        <div class="sub">to 22.10.2026 · +1,6 kg vs 13.10. · vyötärö ei mitattu</div>
       </div>
       <div class="table-scroll"><table class="meas">
         <thead>
           <tr><th>Pvm</th><th>Paino</th><th>Vyötärö</th><th>Huomio</th></tr>
         </thead>
         <tbody>
+          <tr>
+            <td>to 22.10.2026</td>
+            <td>81,4 kg</td>
+            <td>–</td>
+            <td>Aamu ~08:10 · edellisen illan suolapähkinät (150 g) voivat nostaa nestepainoa · vyötärö ei mitattu</td>
+          </tr>
           <tr>
             <td>ti 13.10.2026</td>
             <td>79,8 kg</td>
@@ -657,7 +663,7 @@
       <div class="chart-grid">
         <div class="chart-card">
           <h3>Painokäyrä</h3>
-          <p class="chart-subtitle">kg · mittaukset 27.9., 5.10. ja 13.10.2026, muu on projekti</p>
+          <p class="chart-subtitle">kg · mittaukset 27.9., 5.10., 13.10. ja 22.10.2026, muu on projekti</p>
           <div class="chart-box"><canvas id="weightChart" aria-label="Painon mitattu piste ja projekti"></canvas></div>
         </div>
         <div class="chart-card">
@@ -1388,7 +1394,7 @@
   </div>
 
   <footer>
-    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 21.10.2026
+    Data: loki.md · tila.json · ohjelma.md · mittaukset.md · Päivitetty 22.10.2026
   </footer>
 
 </div>
@@ -1441,9 +1447,9 @@
 
     new Chart(document.getElementById('weightChart'), {
       type: 'line',
-      data: { labels: ['27.9.', '5.10.', '13.10.', '27.10.', '10.11.', '24.11.'], datasets: [
-        measuredDataset([79.8, 80.4, 79.8, null, null, null]),
-        projectedDataset([null, null, 79.8, 79.7, 79.6, 79.5])
+      data: { labels: ['27.9.', '5.10.', '13.10.', '22.10.', '27.10.', '10.11.', '24.11.'], datasets: [
+        measuredDataset([79.8, 80.4, 79.8, 81.4, null, null, null]),
+        projectedDataset([null, null, null, 81.4, 81.3, 81.2, 81.1])
       ] },
       options: baseOptions('kg', 79.2, 0.2)
     });
