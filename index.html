@@ -537,6 +537,44 @@
   .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .chart-box { position: relative; width: 100%; max-width: 100%; }
   svg, canvas, img { max-width: 100% !important; }
+
+  /* Mobile-friendly tables (fix 3.11.2026): no per-character wrapping */
+  .card table.meas th, .card table.meas td,
+  .card .ppl-table th, .card .ppl-table td { overflow-wrap: normal; word-break: normal; }
+  table.meas th, table.meas td:nth-child(-n+3) { white-space: nowrap; }
+  table.meas td:nth-child(4) { overflow-wrap: break-word; }
+  .ppl-table td.wk { white-space: normal; overflow-wrap: break-word; }
+  .ppl-table .chip { white-space: nowrap; }
+  @media (max-width: 600px) {
+    table.meas, table.meas tbody { display: block; width: 100%; }
+    table.meas thead { display: none; }
+    table.meas tr {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      column-gap: 0.75rem;
+      align-items: baseline;
+      padding: 0.6rem 0.1rem;
+      border-bottom: 1px solid rgba(42,49,64,0.5);
+    }
+    table.meas tr:last-child { border-bottom: none; }
+    table.meas td { display: block; padding: 0; border-bottom: none; }
+    table.meas td:nth-child(1) { color: var(--muted); font-size: 0.8rem; }
+    table.meas td:nth-child(2) { font-weight: 700; }
+    table.meas td:nth-child(3) { justify-self: end; color: var(--muted); font-size: 0.8rem; }
+    table.meas td:nth-child(3)::before { content: "Vyötärö "; }
+    table.meas td:nth-child(4) {
+      grid-column: 1 / -1;
+      white-space: normal;
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+    .ppl-table { font-size: 0.78rem; }
+    .ppl-table { table-layout: fixed; }
+    .ppl-table th:first-child, .ppl-table td.wk { width: 34%; font-size: 0.72rem; }
+    .ppl-table .chip { padding-left: 0.3rem; padding-right: 0.3rem; font-size: 0.68rem; }
+    .ppl-table th, .ppl-table td { padding: 0.45rem 0.2rem; }
+  }
 </style>
 </head>
 <body>
@@ -1474,12 +1512,19 @@
             <td><span class="chip pull">Pull</span></td>
             <td><span class="chip legs">Legs</span></td>
           </tr>
-          <tr class="current">
-            <td class="wk">Viikko 4 ← käynnissä (Push ✓ · Pull ✓ · seuraava Legs)</td>
+          <tr>
+            <td class="wk">Viikko 4 ✓</td>
             <td><span class="chip push">Push</span></td>
             <td><span class="chip pull">Pull</span></td>
             <td><span class="chip legs">Legs</span></td>
             <td><span class="chip push">Push</span></td>
+          </tr>
+          <tr class="current">
+            <td class="wk">Viikko 5 ← seuraavaksi</td>
+            <td><span class="chip pull">Pull</span></td>
+            <td><span class="chip legs">Legs</span></td>
+            <td><span class="chip push">Push</span></td>
+            <td><span class="chip pull">Pull</span></td>
           </tr>
         </tbody>
       </table></div>
